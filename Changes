@@ -1,0 +1,21 @@
+SimpleLog.pm
+
+Revision 0.02 20050823
+ - There have been some problems with my 
+   current distrobutions.  Upon this release,
+   these problems have been updated tested and
+   changed.
+
+   This release will also include a number of new
+   supplimental files that have not been included
+   in earlier distos.  Included are the following
+   (can also refer to the MANIFEST):
+
+ - Added Makefile.PL
+ - Added README
+ - Added Changes
+ - Added test file
+ - Added MANIFEST
+
+Revision 0.02 20050816
+ - Initial CPAN release

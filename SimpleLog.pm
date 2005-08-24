@@ -4,20 +4,19 @@ use warnings;
 use POSIX qw(strftime);
 
 use vars qw($VERSION);
-$VERSION = '0.03';
+$VERSION = '0.02';
 
-=head1 new()
-  
+=head1 new
+
   Description:
 
     The core constructor for the logging object
 
-  Input:
+  Inputs:
 
-    $file_name: The absolute file path file source
-                for the log file of which to be 
-                written to.
-
+    arg1:  The file name descriptor for the 
+       	   log file location
+	   
 =cut
 sub new {
     my ( $class , $file_name ) = @_;
@@ -36,7 +35,7 @@ sub new {
     return $this;    
 }
 
-=head1 log_message()
+=head1 log_message
 
   Description:
 
@@ -45,14 +44,9 @@ sub new {
 
   Input:
 
-    $log_string:  The un-formatted scalar value that will
-                  be logged to the file defined through
-                  the constructor.
-
-                  Each line will have a date stamp of
-                  the time of the log, as well as the 
-                  message appended to the end of the 
-                  log.
+    arg1:  The scalar/string un-formatted log string that 
+           will be buffered and later flushed to the log
+	   file.
 
 =cut
 sub log_message {
@@ -64,8 +58,8 @@ sub log_message {
     $time_stamp = strftime ( "[%Y%m%d %H:%M:%S]", localtime ( time ) );
 
       # Dicate the message, append the data and log the value
-    chomp $log_string;
-    $log_string = "$time_stamp $log_string\n";
+    chomp $log_string if ( defined ( $log_string ) );
+    $log_string = ( defined ( $log_string ) ) ? "$time_stamp $log_string\n" : "$time_stamp NO MESSAGE\n";
     push ( @$file_handle , $log_string );
 }
 
@@ -82,6 +76,11 @@ sub _flush_log_buffer {
     }
     close FILE;
 }
+
+sub DESTROY {
+    my ( $this ) = @_;
+    $this->_flush_log_buffer ( );
+}
 1;
 
 __END__
@@ -90,7 +89,6 @@ __END__
     
     Name:   Trevor Hall 
     E-mail: hallta@gmail.com
-    URL:    http://trevorhall.blucorral.com
 
 =head1 NAME
 
