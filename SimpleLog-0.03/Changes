@@ -1,5 +1,11 @@
 SimpleLog.pm
 
+Revision 0.03 20050824
+ - Same as 0.02, new revision number due to 
+   duplicated uploads to CPAN.
+
+   There was an error with the .tar.gz upload
+
 Revision 0.02 20050823
  - There have been some problems with my 
    current distrobutions.  Upon this release,
