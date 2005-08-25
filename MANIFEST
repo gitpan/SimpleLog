@@ -1,5 +1,5 @@
 Changes
-SimpleLog.pm
+lib/Log/SimpleLog.pm
 README
 MANIFEST
 Makefile.PL
